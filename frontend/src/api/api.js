@@ -86,3 +86,13 @@ export const removeShopFromComparison = async (shopId) => {
     throw error;
   }
 };
+export const commonServices = [
+  'Oil Change',
+  'Brake Repair',
+  'Tire Replacement',
+  'Engine Repair',
+  'Transmission',
+  'Battery Service',
+  'A/C Service',
+  'Diagnostics',
+];

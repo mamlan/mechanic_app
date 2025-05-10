@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { Feather } from '@expo/vector-icons';
+import { commonServices } from '../api/api';
 
 const FilterSort = ({ options, onApply, onCancel }) => {
   const [localOptions, setLocalOptions] = useState({
@@ -9,16 +10,7 @@ const FilterSort = ({ options, onApply, onCancel }) => {
     minRating: options.minRating || 0,
   });
 
-  const commonServices = [
-    'Oil Change',
-    'Brake Repair',
-    'Tire Replacement',
-    'Engine Repair',
-    'Transmission',
-    'Battery Service',
-    'A/C Service',
-    'Diagnostics',
-  ];
+
 
   const handleSortSelection = (sortBy) => {
     setLocalOptions({ ...localOptions, sortBy });

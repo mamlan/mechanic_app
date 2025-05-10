@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import ShopsScreenStyle from '../../style/HomeScreenStyle.js'
+
 import { 
   View, 
   Text, 
@@ -100,37 +102,37 @@ const ShopsScreen = () => {
 
   if (loading) {
     return (
-      <View style={styles.centerContainer}>
+      <View style={ShopsScreenStyle.centerContainer}>
         <ActivityIndicator size="large" color="#2563EB" />
-        <Text style={styles.loadingText}>Loading mechanic shops...</Text>
+        <Text style={ShopsScreenStyle.loadingText}>Loading mechanic shops...</Text>
       </View>
     );
   }
 
   if (error) {
     return (
-      <View style={styles.centerContainer}>
+      <View style={ShopsScreenStyle.centerContainer}>
         <Feather name="alert-circle" size={50} color="#EF4444" />
-        <Text style={styles.errorText}>{error}</Text>
-        <TouchableOpacity style={styles.retryButton} onPress={loadShops}>
-          <Text style={styles.retryButtonText}>Retry</Text>
+        <Text style={ShopsScreenStyle.errorText}>{error}</Text>
+        <TouchableOpacity style={ShopsScreenStyle.retryButton} onPress={loadShops}>
+          <Text style={ShopsScreenStyle.retryButtonText}>Retry</Text>
         </TouchableOpacity>
       </View>
     );
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.searchContainer}>
-        <Feather name="search" size={20} color="#6B7280" style={styles.searchIcon} />
+    <View style={ShopsScreenStyle.container}>
+      <View style={ShopsScreenStyle.searchContainer}>
+        <Feather name="search" size={20} color="#6B7280" style={ShopsScreenStyle.searchIcon} />
         <TextInput
-          style={styles.searchInput}
+          style={ShopsScreenStyle.searchInput}
           placeholder="Search shops or services..."
           value={searchQuery}
           onChangeText={setSearchQuery}
         />
         <TouchableOpacity 
-          style={styles.filterButton}
+          style={ShopsScreenStyle.filterButton}
           onPress={() => setShowFilter(!showFilter)}
         >
           <Feather name="sliders" size={20} color="#2563EB" />
@@ -146,16 +148,16 @@ const ShopsScreen = () => {
       )}
       
       {filteredShops.length === 0 ? (
-        <View style={styles.emptyContainer}>
+        <View style={ShopsScreenStyle.emptyContainer}>
           <Feather name="info" size={50} color="#9CA3AF" />
-          <Text style={styles.emptyText}>No shops found matching your criteria</Text>
+          <Text style={ShopsScreenStyle.emptyText}>No shops found matching your criteria</Text>
         </View>
       ) : (
         <FlatList
           data={filteredShops}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => <ShopCard shop={item} />}
-          contentContainerStyle={styles.listContainer}
+          contentContainerStyle={ShopsScreenStyle.listContainer}
           showsVerticalScrollIndicator={false}
         />
       )}
@@ -163,79 +165,6 @@ const ShopsScreen = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#F9FAFB',
-  },
-  searchContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    margin: 15,
-    paddingHorizontal: 15,
-    borderRadius: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
-    elevation: 2,
-  },
-  searchIcon: {
-    marginRight: 10,
-  },
-  searchInput: {
-    flex: 1,
-    height: 50,
-    fontSize: 16,
-  },
-  filterButton: {
-    padding: 10,
-  },
-  listContainer: {
-    padding: 15,
-    paddingTop: 5,
-  },
-  centerContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
-  },
-  loadingText: {
-    marginTop: 10,
-    fontSize: 16,
-    color: '#6B7280',
-  },
-  errorText: {
-    marginTop: 10,
-    fontSize: 16,
-    color: '#6B7280',
-    textAlign: 'center',
-  },
-  retryButton: {
-    marginTop: 20,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    backgroundColor: '#2563EB',
-    borderRadius: 8,
-  },
-  retryButtonText: {
-    color: 'white',
-    fontWeight: 'bold',
-  },
-  emptyContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
-  },
-  emptyText: {
-    marginTop: 10,
-    fontSize: 16,
-    color: '#6B7280',
-    textAlign: 'center',
-  },
-});
+
 
 export default ShopsScreen;
